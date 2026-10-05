@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 
 interface Employee{
@@ -9,7 +10,7 @@ interface Employee{
 }
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FormsModule],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -21,6 +22,20 @@ export class App {
   
   counter = signal(0);
   showDetails = signal(true);
+
+  // Day 2 - Data Binding
+  day2Title:string = "Angular Data Binding";
+  imageUrl: string = 'https://angular.dev/assets/images/press-kit/angular_icon_gradient.gif'; 
+  message: string = 'Click the button';
+  userName: string = '';
+
+  //Day2-Practice
+  practiceUserName: string = 'Ashish';
+  practiceUserRole: string = 'Full Stack .NET Developer';
+  displayName: string = '';
+  greeting: string = 'Welcome!';
+  
+  showEmployee = true
 
   isLearningAngular: boolean = true;
   employee: Employee = {
@@ -42,4 +57,7 @@ export class App {
     this.isLearningAngular = !this.isLearningAngular;
   }
 
+  updateGreeting(): void{
+    this.greeting = `Hello ${this.displayName}`;
+  }
 }

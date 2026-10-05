@@ -51,3 +51,77 @@
 <button (click)="showDetails.set(true)">
   Show Details
 </button>
+
+<hr>
+<hr>
+<h1>Day 2</h1>
+
+<h2>Day2 Title: {{day2Title}}</h2>
+<img [src]="imageUrl" alt="Angular Logo" width="200">
+
+<button (click)="showMessage()">{{message}}</button>
+
+<input
+  type="text"
+  [(ngModel)]="userName"
+  placeholder="Enter your name"
+>
+
+<p>Hello {{ userName }}</p>
+
+<hr>
+<hr>
+<h1>Day 2 - Practice</h1>
+
+<h2>My Profile</h2>
+
+<p>Name: {{ practiceUserName }}</p>
+<p>Role: {{ practiceUserRole }}</p>
+
+<h2>Name Editor</h2>
+
+<input
+  type="text"
+  [(ngModel)]="displayName"
+  placeholder="Enter your name"
+>
+
+<button (click)="updateGreeting()">
+  Update Greeting
+</button>
+
+<p>{{ greeting }}</p>
+
+<h2>Employee Editor</h2>
+
+@if (showEmployee) {
+  <p>ID: {{ employee.id }}</p>
+  <p>Name: {{ employee.name }}</p>
+  <p>Department: {{ employee.department }}</p>
+}
+
+<hr>
+
+<label>
+  Employee Name:
+  <input
+    type="text"
+    [(ngModel)]="employee.name"
+  >
+</label>
+
+<br><br>
+
+<label>
+  Employee Department:
+  <input
+    type="text"
+    [(ngModel)]="employee.department"
+  >
+</label>
+
+<br><br>
+
+<button (click)="showEmployee = !showEmployee">
+  Show / Hide Employee
+</button>

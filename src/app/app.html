@@ -23,3 +23,31 @@
   Increase
 </button>
 
+
+
+<p>SLearning Angular: {{ isLearningAngular ? 'Yes' : 'No' }}</p>
+
+<button (click)="toggleLearningStatus()">
+  Toggle Learning Status
+</button>
+
+
+
+<hr>
+
+<h2>Employee</h2>
+
+<p>Name: {{ employee.name }}</p>
+
+@if(showDetails()){
+
+  <p>Email: {{ employee.email }}</p>
+  <p>Department: {{ employee.department }}</p>
+  <button (click)="showDetails.set(false)">
+    Hide Details </button>
+}
+  
+
+<button (click)="showDetails.set(true)">
+  Show Details
+</button>

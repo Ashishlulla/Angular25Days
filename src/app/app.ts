@@ -20,6 +20,9 @@ export class App {
   protected readonly title = signal('Angular25Days');
   
   counter = signal(0);
+  showDetails = signal(true);
+
+  isLearningAngular: boolean = true;
   employee: Employee = {
     id: 1,
     name:'Ashish lulla',
@@ -34,4 +37,9 @@ export class App {
   changeName(): void{
     this.employee.name = "Angular Developer";
   }
+
+  toggleLearningStatus(): void{
+    this.isLearningAngular = !this.isLearningAngular;
+  }
+
 }

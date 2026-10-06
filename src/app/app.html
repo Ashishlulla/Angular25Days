@@ -125,3 +125,36 @@
 <button (click)="showEmployee = !showEmployee">
   Show / Hide Employee
 </button>
+
+<hr>
+<br>
+
+<h1>Day 3</h1>
+
+<h2>Login Status</h2>
+@if (isLoggedIn) {
+  <p>Welcome, Ashish Lulla!</p>
+} @else {
+  <p>Please log in to continue.</p>
+}
+
+<button (click)="isLoggedIn = !isLoggedIn">Logout/Login</button>
+
+<h3>Employee Cards</h3>
+
+
+@for(employee of employees; track employee.id) {
+  <div class="employee-card">
+    <h4>{{ employee.name }}</h4>
+    <p>Email: {{ employee.email }}</p>
+    <p>Department: {{ employee.department }}</p>
+    <p>Salary: {{ employee.salary | currency:'INR':'symbol':'1.2-2' }}</p>
+  </div>
+}
+
+<p> Uppercase Pipe Test Course Name: {{ courseName | uppercase }}</p>
+<p> Lowercase Pipe Test Course Name: {{ courseName | lowercase }}</p>
+<p> Decimal Pipe Test Salary: {{ employee.salary | number:'1.2-2' }}</p>
+<p> Date Pipe Test Joining Date: {{ joingDate | date:'dd/MM/yyyy' }}</p>
+
+

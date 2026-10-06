@@ -1,4 +1,4 @@
-import { Component,  input } from '@angular/core';
+import { Component,  input, output } from '@angular/core';
 
 
 
@@ -17,4 +17,27 @@ export class EmployeeCard
     name:string;
     role:string;
    }>();
+
+   employeeSelected = output<number>();
+   employeeNameSelected = output<string>();
+
+   selectEmployee(): void
+   {
+      const id = this.employee()?.id;
+
+     if(id !== undefined)
+    {
+        this.employeeSelected.emit(id);
+    }
+   }
+
+   ShowEmployeeNameInConsole(): void
+   {
+      const name = this.employee()?.name;
+      
+      if(name !== undefined)
+      {
+          this.employeeNameSelected.emit(name);
+      }
+   }
 }

@@ -161,4 +161,8 @@
 <hr>
 <br>
 <h1>Day 4</h1>
-<app-employee-card [employee]="selectedEmployee"></app-employee-card>
+<app-employee-card 
+[employee]="selectedEmployee"
+(employeeSelected)="onEmployeeSelected($event)"
+(employeeNameSelected)="onEmployeeNameSelected($event)"
+></app-employee-card>

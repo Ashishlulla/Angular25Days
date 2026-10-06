@@ -92,6 +92,10 @@ export class App {
     role: 'Software Engineer'
   };
 
+  selectedEmployeeId: number | null = null;
+
+  selectedEmployeeName: string | null = null;
+
   showMessage(): void{
     alert("Hello welcome to Angular 25 Days Challenge");
   }
@@ -106,5 +110,18 @@ export class App {
 
   updateGreeting(): void{
     this.greeting = `Hello ${this.displayName}`;
+  }
+
+  onEmployeeSelected(employeeId: number): void{
+    this.selectedEmployeeId = employeeId;
+
+    console.log(`Selected Employee ID: ${employeeId}`);
+  }
+
+  onEmployeeNameSelected(employeeName: string): void
+  {
+    this.selectedEmployeeName = employeeName;
+
+    console.log(`Selected Employee Name: ${employeeName}`);
   }
 }

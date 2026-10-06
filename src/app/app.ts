@@ -2,8 +2,13 @@ import { Component, signal } from '@angular/core';
 import { UpperCasePipe, LowerCasePipe, DecimalPipe, DatePipe, CurrencyPipe} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-
 import { EmployeeCard } from './employee-card/employee-card';
+import { EmployeeService, EmployeeServiceInterface } from './employee';
+import { Department,  } from './department';
+
+import { DepartmentInterface } from './department';
+
+import {EmployeeList} from './employee-list/employee-list';
 
 interface Employee{
   id: number;
@@ -20,7 +25,7 @@ interface EmployeeCardInput{
 }
 
 @Component({
-  imports: [RouterOutlet, FormsModule, UpperCasePipe, LowerCasePipe, DecimalPipe, DatePipe, CurrencyPipe, EmployeeCard],
+  imports: [RouterOutlet, FormsModule, UpperCasePipe, LowerCasePipe, DecimalPipe, DatePipe, CurrencyPipe, EmployeeCard, EmployeeList],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -28,8 +33,20 @@ interface EmployeeCardInput{
 
 
 export class App {
+
+
   protected readonly title = signal('Angular25Days');
   
+  //Day5- Services and Dependency Injection
+  employeesFromService: EmployeeServiceInterface[] = [];
+  departmentsFromService: DepartmentInterface[] = [];
+  
+  constructor(private employeeService: EmployeeService, private departmentService: Department) 
+  {
+    this.departmentsFromService = this.departmentService.getDepartments();
+  }
+
+
   counter = signal(0);
   showDetails = signal(true);
 
@@ -96,6 +113,8 @@ export class App {
 
   selectedEmployeeName: string | null = null;
 
+  id: number = 0;;
+   
   showMessage(): void{
     alert("Hello welcome to Angular 25 Days Challenge");
   }
@@ -123,5 +142,39 @@ export class App {
     this.selectedEmployeeName = employeeName;
 
     console.log(`Selected Employee Name: ${employeeName}`);
+  }
+
+  //Day5- Services and Dependency Injection
+  getEmployesFromService(): void {
+
+    this.employeesFromService = this.employeeService.getEmployees();
+
+    console.log(`Employees: ${JSON.stringify(this.employeesFromService)}`);
+  }
+
+  addEmployee():void
+  {
+    this.employeeService.addEmployee({id: 103, name: 'New Employee', role: 'Intern'})
+
+    console.log('Employee added successfully');
+  }
+
+  getDepartments():void
+  {
+      this.departmentsFromService =this.departmentService.getDepartments();
+
+      console.log(`Departments: ${this.departmentsFromService}`);
+  }
+
+  getEmployeeById(id:number):void
+  {
+    const employee = this.employeeService.getEmployeeById(id);
+    console.log(`Employee: ${employee?.id}, ${employee?.name}, ${employee?.role}`);
+  }
+
+  deleteEmployeeById(id:number):void
+  {
+    const updatedEmployees = this.employeeService.deleteEmployeeById(id);
+    console.log(`Updated Employees: ${JSON.stringify(updatedEmployees)}`);
   }
 }

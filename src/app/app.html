@@ -166,3 +166,45 @@
 (employeeSelected)="onEmployeeSelected($event)"
 (employeeNameSelected)="onEmployeeNameSelected($event)"
 ></app-employee-card>
+
+<hr>
+
+<h1>Day 5</h1>
+<h2>Employees From Service</h2>
+
+<button (click)="getEmployesFromService()">Get Employees From Service</button>
+@for (employee of employeesFromService; track employee.id) {
+  <p>
+    {{ employee.id }} - {{ employee.name }} - {{ employee.role }}
+  </p>
+}
+
+<app-employee-list></app-employee-list>
+<button (click)="addEmployee()">Add Employee</button>
+
+<h1>Day 5- Practice</h1>
+
+@for (department of departmentsFromService; track department.id) 
+{
+  <p>
+    {{ department.id }} - {{ department.name }}
+  </p>
+}
+
+<input type ="number" [(ngModel)]="id" placeholder="Enter Employee ID">
+<button (click)="getEmployeeById(id)">Get Employee</button>
+
+<h1>Employee Management Service</h1>
+
+<button (click)="getEmployesFromService()">Get All Employees</button>
+<br>
+
+<input type ="number" [(ngModel)]="id" placeholder="Enter Employee ID">
+<button (click)="getEmployeeById(id)">Get Employee</button>
+
+<br>
+<button (click)="addEmployee()">Add Employee</button>
+
+<br>
+<input type ="number" [(ngModel)]="id" placeholder="Enter Employee ID">
+<button (click)="deleteEmployeeById(id)">Delete Employee</button>

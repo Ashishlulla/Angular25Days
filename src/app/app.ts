@@ -13,6 +13,12 @@ interface Employee{
   salary: number;
 }
 
+interface EmployeeCardInput{
+  id: number;
+  name: string;
+  role: string;
+}
+
 @Component({
   imports: [RouterOutlet, FormsModule, UpperCasePipe, LowerCasePipe, DecimalPipe, DatePipe, CurrencyPipe, EmployeeCard],
   selector: 'app-root',
@@ -79,7 +85,12 @@ export class App {
     salary: 500000
   }
 
-  
+  // Day 4 - Component Interaction
+  selectedEmployee: EmployeeCardInput = {
+    id: 1,
+    name:'Ashish lulla',
+    role: 'Software Engineer'
+  };
 
   showMessage(): void{
     alert("Hello welcome to Angular 25 Days Challenge");

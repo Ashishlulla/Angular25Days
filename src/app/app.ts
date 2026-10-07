@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { UpperCasePipe, LowerCasePipe, DecimalPipe, DatePipe, CurrencyPipe} from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { EmployeeCard } from './employee-card/employee-card';
 import { EmployeeService, EmployeeServiceInterface } from './employee';
 import { Department,  } from './department';
@@ -25,7 +25,7 @@ interface EmployeeCardInput{
 }
 
 @Component({
-  imports: [RouterOutlet, FormsModule, UpperCasePipe, LowerCasePipe, DecimalPipe, DatePipe, CurrencyPipe, EmployeeCard, EmployeeList],
+  imports: [RouterOutlet, RouterLink, FormsModule, UpperCasePipe, LowerCasePipe, DecimalPipe, DatePipe, CurrencyPipe, EmployeeCard, EmployeeList],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

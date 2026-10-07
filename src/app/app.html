@@ -208,3 +208,21 @@
 <br>
 <input type ="number" [(ngModel)]="id" placeholder="Enter Employee ID">
 <button (click)="deleteEmployeeById(id)">Delete Employee</button>
+
+
+<hr>
+<h1>Day 6 - Angular Routing</h1>
+
+<nav>
+  <a routerLink="/">Home</a>
+  |
+  <a routerLink="/about">About</a>
+  |
+  <a routerLink="/contact">Contact</a>
+  |
+  <a routerLink="/employees">Employees</a>
+</nav>
+
+<hr>
+
+<router-outlet></router-outlet>

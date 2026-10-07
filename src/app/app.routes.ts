@@ -4,6 +4,7 @@ import { Home } from './home/home';
 import { About } from './about/about';
 import { NotFound } from './not-found/not-found';
 import { Contact } from './contact/contact';
+import { EmployeeForm } from './employee-form/employee-form';
 
 export const routes: Routes = 
 [
@@ -12,5 +13,7 @@ export const routes: Routes =
     {path:'', component:Home},
     {path:'about', component:About},
     {path:'contact', component:Contact},
-    {path:'**', component:NotFound}
+    {path:'add-employee', component:EmployeeForm},
+    {path:'**', component:NotFound},
+    
 ];

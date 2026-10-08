@@ -5,10 +5,11 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { EmployeeCard } from './employee-card/employee-card';
 import { EmployeeService, EmployeeServiceInterface } from './employee';
 import { Department,  } from './department';
-
 import { DepartmentInterface } from './department';
-
 import {EmployeeList} from './employee-list/employee-list';
+import { EmployeeApi } from './employee-api';
+import { ApiUser } from './Models/api-user';
+
 
 interface Employee{
   id: number;
@@ -41,7 +42,7 @@ export class App {
   employeesFromService: EmployeeServiceInterface[] = [];
   departmentsFromService: DepartmentInterface[] = [];
   
-  constructor(private employeeService: EmployeeService, private departmentService: Department) 
+  constructor(private employeeService: EmployeeService, private departmentService: Department, private employeApi:EmployeeApi) 
   {
     this.departmentsFromService = this.departmentService.getDepartments();
   }
@@ -113,7 +114,14 @@ export class App {
 
   selectedEmployeeName: string | null = null;
 
-  id: number = 0;;
+  id: number = 0;
+
+  //Day8-Http
+  apiUsers: ApiUser[]=[];
+  loadedUsers: boolean = false;
+  isLoading: boolean = false;
+  apiError: boolean = false;
+
    
   showMessage(): void{
     alert("Hello welcome to Angular 25 Days Challenge");
@@ -177,4 +185,22 @@ export class App {
     const updatedEmployees = this.employeeService.deleteEmployeeById(id);
     console.log(`Updated Employees: ${JSON.stringify(updatedEmployees)}`);
   }
+
+  getUsersFromApi(): void{
+    this.employeApi.getUsers().subscribe({
+  next: (data) => {
+    console.log('API DATA:', data);
+    this.apiUsers = data;
+    this.loadedUsers = true;
+    this.isLoading = true;
+  },
+  error: (error) => {
+    console.error('API ERROR:', error);
+
+    this.apiError = true
+    this.isLoading=false;
+  }
+    });
+}
+
 }

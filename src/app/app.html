@@ -226,3 +226,37 @@
 <hr>
 
 <router-outlet></router-outlet>
+
+<hr>
+<h1>Day 8 - HttpClient</h1>
+
+<h3>User Details</h3>
+
+
+<button
+  (click)="getUsersFromApi()"
+  [disabled]="isLoading">
+  {{ isLoading ? 'Loading...' : 'Load Users' }}
+</button>
+
+@if (isLoading)
+{
+  <p>Loading users...</p>
+}
+@else if (!loadedUsers)
+{
+  <p>Click "Load Users" to fetch users.</p>
+}
+
+@if (loadedUsers)
+{
+  <h3>Users Loaded</h3>
+
+  @for (user of apiUsers; track user.id)
+  {
+    <p>
+      {{user.id}} - {{user.name}} - {{user.email}} - {{user.username}}
+    </p>
+  }
+}
+

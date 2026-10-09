@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { UpperCasePipe, LowerCasePipe, DecimalPipe, DatePipe, CurrencyPipe} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet, RouterLink } from '@angular/router';
@@ -9,6 +9,9 @@ import { DepartmentInterface } from './department';
 import {EmployeeList} from './employee-list/employee-list';
 import { EmployeeApi } from './employee-api';
 import { ApiUser } from './Models/api-user';
+import { UserService } from './user';
+import { User } from './Models/user';
+import { ThisReceiver } from '@angular/compiler';
 
 
 interface Employee{
@@ -33,7 +36,7 @@ interface EmployeeCardInput{
 })
 
 
-export class App {
+export class App implements OnInit {
 
 
   protected readonly title = signal('Angular25Days');
@@ -46,8 +49,6 @@ export class App {
   {
     this.departmentsFromService = this.departmentService.getDepartments();
   }
-
-
   counter = signal(0);
   showDetails = signal(true);
 
@@ -202,5 +203,64 @@ export class App {
   }
     });
 }
+
+
+  //Day 9- CRUD Basics 
+  private userService = inject(UserService);
+  users: User[] = [];
+
+  newName: string = '';
+  newUsername: string = '';
+  newEmail: string = '';
+
+ ngOnInit(): void {
+    this.userService.getUsers().subscribe({
+      next: (data) => {
+        this.users = data;
+        console.log('Users received:', this.users);
+      },
+      error: (error) => {
+        console.error('Error fetching users:', error);
+      }
+    });
+  }
+
+  addUser(): void{
+    const user= {
+      name: this.newName,
+      email: this.newEmail,
+      username: this.newUsername
+    };
+
+
+    this.userService.addUser(user).subscribe({next: (createdUser)=>{
+      this.users= [...this.users, createdUser], 
+      this.newName = '', 
+      this.newEmail = '', 
+      this.newUsername = ''}, 
+      error: (error)=> console.log('Error fetched: ',error )});
+    
+
+  
+  }
+
+  deleteUser(id:number): void{
+    this.userService.deleteUser(id).subscribe({next: () =>
+      {
+        this.users = this.users.filter(user=>user.id !== id);
+      }, 
+    error: (error)=> console.log('Error fetched: ', error)});
+  }
+  
+  updateUser(updatedUser:User): void{
+    this.userService.updateUser(updatedUser).subscribe({next: (user)=>
+      {
+        console.log('Updated user:', user);
+
+        this.users = this.users.map(u=>u.id === user.id? user: u)
+      
+      }, 
+      error: (error)=>console.log("error fetched", error)})
+  }
 
 }

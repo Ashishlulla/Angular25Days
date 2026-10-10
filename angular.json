@@ -3,11 +3,19 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
+<<<<<<< HEAD
     "analytics": "edcfd9c7-b5e2-4626-acdf-847dd356c3f3"
   },
   "newProjectRoot": "projects",
   "projects": {
     "Day10CrudApp": {
+=======
+    "analytics": "9e769538-605d-4e24-985a-7737fbacba17"
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "Angular25Days": {
+>>>>>>> origin/main
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -57,10 +65,17 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
+<<<<<<< HEAD
               "buildTarget": "Day10CrudApp:build:production"
             },
             "development": {
               "buildTarget": "Day10CrudApp:build:development"
+=======
+              "buildTarget": "Angular25Days:build:production"
+            },
+            "development": {
+              "buildTarget": "Angular25Days:build:development"
+>>>>>>> origin/main
             }
           },
           "defaultConfiguration": "development"

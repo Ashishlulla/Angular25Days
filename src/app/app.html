@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
   <header class="page-header">
     <h1>{{ appTitle }}</h1>
@@ -102,3 +103,346 @@
     </div>
   </section>
 </div>
+=======
+<h1>Hello, {{ employee.name }}!</h1>
+<p>Email: {{ employee.email }}</p>
+<p>Department: {{ employee.department }}</p>
+<button (click)="showMessage()">Click Me</button>
+<button (click)="changeName()">Change Name</button>
+
+
+<hr>
+
+<h1>Employee Details</h1>
+<p>ID: {{ employee.id }}</p>
+<p>Name: {{ employee.name }}</p>
+<p>Email: {{ employee.email }}</p>
+<p>Department: {{ employee.department }}</p>
+
+<hr>
+
+<h2>Counter</h2>
+
+<p>Count: {{ counter() }}</p>
+
+<button (click)="counter.set(counter() + 1)">
+  Increase
+</button>
+
+
+
+<p>SLearning Angular: {{ isLearningAngular ? 'Yes' : 'No' }}</p>
+
+<button (click)="toggleLearningStatus()">
+  Toggle Learning Status
+</button>
+
+
+
+<hr>
+
+<h2>Employee</h2>
+
+<p>Name: {{ employee.name }}</p>
+
+@if(showDetails()){
+
+  <p>Email: {{ employee.email }}</p>
+  <p>Department: {{ employee.department }}</p>
+  <button (click)="showDetails.set(false)">
+    Hide Details </button>
+}
+  
+
+<button (click)="showDetails.set(true)">
+  Show Details
+</button>
+
+<hr>
+<hr>
+<h1>Day 2</h1>
+
+<h2>Day2 Title: {{day2Title}}</h2>
+<img [src]="imageUrl" alt="Angular Logo" width="200">
+
+<button (click)="showMessage()">{{message}}</button>
+
+<input
+  type="text"
+  [(ngModel)]="userName"
+  placeholder="Enter your name"
+>
+
+<p>Hello {{ userName }}</p>
+
+<hr>
+<hr>
+<h1>Day 2 - Practice</h1>
+
+<h2>My Profile</h2>
+
+<p>Name: {{ practiceUserName }}</p>
+<p>Role: {{ practiceUserRole }}</p>
+
+<h2>Name Editor</h2>
+
+<input
+  type="text"
+  [(ngModel)]="displayName"
+  placeholder="Enter your name"
+>
+
+<button (click)="updateGreeting()">
+  Update Greeting
+</button>
+
+<p>{{ greeting }}</p>
+
+<h2>Employee Editor</h2>
+
+@if (showEmployee) {
+  <p>ID: {{ employee.id }}</p>
+  <p>Name: {{ employee.name }}</p>
+  <p>Department: {{ employee.department }}</p>
+}
+
+<hr>
+
+<label>
+  Employee Name:
+  <input
+    type="text"
+    [(ngModel)]="employee.name"
+  >
+</label>
+
+<br><br>
+
+<label>
+  Employee Department:
+  <input
+    type="text"
+    [(ngModel)]="employee.department"
+  >
+</label>
+
+<br><br>
+
+<button (click)="showEmployee = !showEmployee">
+  Show / Hide Employee
+</button>
+
+<hr>
+<br>
+
+<h1>Day 3</h1>
+
+<h2>Login Status</h2>
+@if (isLoggedIn) {
+  <p>Welcome, Ashish Lulla!</p>
+} @else {
+  <p>Please log in to continue.</p>
+}
+
+<button (click)="isLoggedIn = !isLoggedIn">Logout/Login</button>
+
+<h3>Employee Cards</h3>
+
+
+@for(employee of employees; track employee.id) {
+  <div class="employee-card">
+    <h4>{{ employee.name }}</h4>
+    <p>Email: {{ employee.email }}</p>
+    <p>Department: {{ employee.department }}</p>
+    <p>Salary: {{ employee.salary | currency:'INR':'symbol':'1.2-2' }}</p>
+  </div>
+}
+
+<p> Uppercase Pipe Test Course Name: {{ courseName | uppercase }}</p>
+<p> Lowercase Pipe Test Course Name: {{ courseName | lowercase }}</p>
+<p> Decimal Pipe Test Salary: {{ employee.salary | number:'1.2-2' }}</p>
+<p> Date Pipe Test Joining Date: {{ joingDate | date:'dd/MM/yyyy' }}</p>
+
+
+<hr>
+<br>
+<h1>Day 4</h1>
+<app-employee-card 
+[employee]="selectedEmployee"
+(employeeSelected)="onEmployeeSelected($event)"
+(employeeNameSelected)="onEmployeeNameSelected($event)"
+></app-employee-card>
+
+<hr>
+
+<h1>Day 5</h1>
+<h2>Employees From Service</h2>
+
+<button (click)="getEmployesFromService()">Get Employees From Service</button>
+@for (employee of employeesFromService; track employee.id) {
+  <p>
+    {{ employee.id }} - {{ employee.name }} - {{ employee.role }}
+  </p>
+}
+
+<app-employee-list></app-employee-list>
+<button (click)="addEmployee()">Add Employee</button>
+
+<h1>Day 5- Practice</h1>
+
+@for (department of departmentsFromService; track department.id) 
+{
+  <p>
+    {{ department.id }} - {{ department.name }}
+  </p>
+}
+
+<input type ="number" [(ngModel)]="id" placeholder="Enter Employee ID">
+<button (click)="getEmployeeById(id)">Get Employee</button>
+
+<h1>Employee Management Service</h1>
+
+<button (click)="getEmployesFromService()">Get All Employees</button>
+<br>
+
+<input type ="number" [(ngModel)]="id" placeholder="Enter Employee ID">
+<button (click)="getEmployeeById(id)">Get Employee</button>
+
+<br>
+<button (click)="addEmployee()">Add Employee</button>
+
+<br>
+<input type ="number" [(ngModel)]="id" placeholder="Enter Employee ID">
+<button (click)="deleteEmployeeById(id)">Delete Employee</button>
+
+
+<hr>
+<h1>Day 6 - Angular Routing</h1>
+
+<nav>
+  <a routerLink="/">Home</a>
+  |
+  <a routerLink="/about">About</a>
+  |
+  <a routerLink="/contact">Contact</a>
+  |
+  <a routerLink="/employees">Employees</a>
+</nav>
+
+<hr>
+
+<router-outlet></router-outlet>
+
+<hr>
+<h1>Day 8 - HttpClient</h1>
+
+<h3>User Details</h3>
+
+
+<button
+  (click)="getUsersFromApi()"
+  [disabled]="isLoading">
+  {{ isLoading ? 'Loading...' : 'Load Users' }}
+</button>
+
+@if (isLoading)
+{
+  <p>Loading users...</p>
+}
+@else if (!loadedUsers)
+{
+  <p>Click "Load Users" to fetch users.</p>
+}
+
+@if (loadedUsers)
+{
+  <h3>Users Loaded</h3>
+
+  @for (user of apiUsers; track user.id)
+  {
+    <p>
+      {{user.id}} - {{user.name}} - {{user.email}} - {{user.username}}
+    </p>
+  }
+}
+
+<hr>
+
+
+
+
+<h1>Day 9 - Angular CRUD</h1>
+
+<h2>Add User</h2>
+
+<form (ngSubmit)="addUser()">
+  <input
+    type="text"
+    name="name"
+    placeholder="Full name"
+    [(ngModel)]="newName"
+    required
+  />
+  <br><br>
+
+  <input
+    type="text"
+    name="username"
+    placeholder="Username"
+    [(ngModel)]="newUsername"
+    required
+  />
+
+  <br><br>
+
+  <input
+    type="email"
+    name="email"
+    placeholder="Email address"
+    [(ngModel)]="newEmail"
+    required
+  />
+
+  <br><br>
+  
+  <button type="submit">Add User</button>
+</form>
+
+<h2>Users List</h2>
+
+@for (user of users; track user.id) {
+  <section>
+    <h3>{{ user.name }}</h3>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+
+    <button type="button" (click)="updateUser(user)">
+      Update Name
+    </button>
+
+    <button type="button" (click)="deleteUser(user.id)">
+      Delete
+    </button>
+  </section>
+  <hr />
+}
+
+<h2>Users List</h2>
+
+@for (user of users; track user.id) {
+  <section>
+    <h3>{{ user.name }}</h3>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+
+    <button type="button" (click)="updateUser(user)">
+      Update Name
+    </button>
+
+    <button type="button" (click)="deleteUser(user.id)">
+      Delete
+    </button>
+  </section>
+  <hr />
+}
+>>>>>>> origin/main
